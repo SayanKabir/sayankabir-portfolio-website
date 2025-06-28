@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sayankabir_potfolio/home.dart';
-import 'package:sayankabir_potfolio/pages/homepage_page.dart';
-import 'package:sayankabir_potfolio/pages/pageprism_page.dart';
-import 'package:sayankabir_potfolio/pages/parakeet_page.dart';
-import 'package:sayankabir_potfolio/pages/sugamkrishi_page.dart';
-import 'package:sayankabir_potfolio/passwordzzz_page.dart';
+import 'package:sayankabir_potfolio/project_pages/homepage_page.dart';
+import 'package:sayankabir_potfolio/project_pages/pageprism_page.dart';
+import 'package:sayankabir_potfolio/project_pages/parakeet_page.dart';
+import 'package:sayankabir_potfolio/project_pages/sugamkrishi_page.dart';
+import 'package:sayankabir_potfolio/project_pages/passwordzzz_page.dart';
 
 void main() {
   runApp(const MyApp());

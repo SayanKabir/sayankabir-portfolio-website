@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sayankabir_potfolio/about_section.dart';
-import 'package:sayankabir_potfolio/contact_section.dart';
-import 'package:sayankabir_potfolio/footer_section.dart';
-import 'package:sayankabir_potfolio/hero_section.dart';
-import 'package:sayankabir_potfolio/projects_section.dart';
-import 'package:sayankabir_potfolio/skills_section.dart';
-import 'navigation_bar.dart';
+import 'package:sayankabir_potfolio/sections/about_section.dart';
+import 'package:sayankabir_potfolio/sections/contact_section.dart';
+import 'package:sayankabir_potfolio/sections/footer_section.dart';
+import 'package:sayankabir_potfolio/sections/hero_section.dart';
+import 'package:sayankabir_potfolio/sections/projects_section.dart';
+import 'package:sayankabir_potfolio/sections/skills_section.dart';
+import 'navbar/navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
