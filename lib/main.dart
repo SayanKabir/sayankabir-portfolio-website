@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:sayankabir_potfolio/home.dart';
 import 'package:sayankabir_potfolio/project_pages/homepage_page.dart';
 import 'package:sayankabir_potfolio/project_pages/pageprism_page.dart';
@@ -7,6 +8,7 @@ import 'package:sayankabir_potfolio/project_pages/sugamkrishi_page.dart';
 import 'package:sayankabir_potfolio/project_pages/passwordzzz_page.dart';
 
 void main() {
+  setUrlStrategy(const HashUrlStrategy());
   runApp(const MyApp());
 }
 

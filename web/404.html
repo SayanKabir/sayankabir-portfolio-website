@@ -1,18 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sayan Kabir | Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
     <script>
-        // GitHub Pages workaround for Flutter routes
-        let redirectTo = location.pathname.replace("/sayankabir-portfolio-website", "");
-        window.location.href = "/sayankabir-portfolio-website/#" + redirectTo;
+        const repo = "sayankabir-portfolio-website";
+        const path = window.location.pathname;
+        const target = path.includes(repo)
+          ? path.substring(path.indexOf(repo) + repo.length)
+          : path;
+
+        const newUrl = `/${repo}/#${target}${window.location.search}${window.location.hash}`;
+        window.location.replace(newUrl);
     </script>
 </head>
-<body>
-
-</body>
+<body></body>
 </html>
