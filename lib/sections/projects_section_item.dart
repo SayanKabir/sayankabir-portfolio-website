@@ -28,7 +28,7 @@ class ProjectsSectionItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 image: DecorationImage(
-                  image: AssetImage('assets/images/projects/$imageName.png'),
+                  image: AssetImage('assets/images/projects/$imageName.png',),
                   fit: BoxFit.fitWidth, // or BoxFit.contain based on your layout
                 ),
               ),

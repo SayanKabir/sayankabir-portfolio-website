@@ -20,40 +20,53 @@ class ParakeetPage extends StatelessWidget {
                 builder: (context, constraints) {
                   final isNarrow = constraints.maxWidth < 600;
 
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Logo + Name
                       Row(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
-                            child: Image.asset(
-                              'assets/images/projects/parakeet.png',
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.cover,
-                            ),
+                          // Logo + Name
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(24),
+                                child: Image.asset(
+                                  'assets/images/projects/parakeet.png',
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(width: 30),
+                              Text(
+                                'Parakeet',
+                                style: GoogleFonts.bebasNeue(
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.w300,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 30),
-                          Text(
-                            'Parakeet',
-                            style: GoogleFonts.bebasNeue(
-                              fontSize: 48,
-                              fontWeight: FontWeight.w300,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
+                          isNarrow
+                              ? Column(children: _actionButtons())
+                              : Row(children: _actionButtons()),
                         ],
                       ),
 
-                      isNarrow
-                          ? Column(
-                        children: _actionButtons(),
-                      )
-                          : Row(
-                        children: _actionButtons(),
+                      const SizedBox(height: 10),
+
+                      // Tech Tags
+                      Wrap(
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: [
+                          _techTag('Flutter'),
+                          _techTag('Firebase'),
+                          _techTag('Hive'),
+                        ],
                       ),
                     ],
                   );
@@ -64,9 +77,8 @@ class ParakeetPage extends StatelessWidget {
 
               // Description
               Text(
-                'Parakeet is a minimal real-time chat and messaging app, inspired by WhatsApp, built using Flutter, '
-                    'Firebase, and Hive. It features user authentication, message storage, and beautiful UI animations '
-                    'optimized for both Android and iOS.',
+                'Parakeet is a minimal real-time messaging app inspired by WhatsApp, built using Flutter, Firebase, and Hive. '
+                    'It includes user authentication, real-time chat functionality, and a clean, performant UI for both Android and iOS.',
                 style: GoogleFonts.inter(
                   fontSize: 18,
                   height: 1.6,
@@ -92,5 +104,23 @@ class ParakeetPage extends StatelessWidget {
         },
       ),
     ];
+  }
+
+  static Widget _techTag(String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: Colors.black12),
+      ),
+      child: Text(
+        label,
+        style: GoogleFonts.inter(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
   }
 }

@@ -39,12 +39,81 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFDF6ED),
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            NavBar(
+      body: Stack(
+        children: [
+          // Scrollable content
+          SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 70), // Space for navbar
+
+                // Hero
+                HeroSection(key: _heroKey),
+                const SizedBox(height: 60),
+
+                // About Me
+                Container(
+                  key: _aboutKey,
+                  child: const AboutSection(),
+                ),
+
+                const SizedBox(height: 200),
+
+                // Projects
+                Padding(
+                  key: _projectsKey,
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Text(
+                    'Recent Projects',
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: 60,
+                      fontWeight: FontWeight.w100,
+                    ),
+                  ),
+                ),
+                const ProjectsSection(),
+
+                const SizedBox(height: 60),
+
+                // Skills
+                Padding(
+                  key: _skillsKey,
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Text(
+                    'Skills',
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: 60,
+                      fontWeight: FontWeight.w100,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const SkillsSection(),
+
+                const SizedBox(height: 60),
+                const SizedBox(height: 200),
+
+                // Contact
+                Padding(
+                  key: _contactKey,
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: const ContactSection(),
+                ),
+                const SizedBox(height: 60),
+
+                const FooterSection(),
+              ],
+            ),
+          ),
+
+          // Fixed NavBar on top
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: NavBar(
               onNavClick: (section) {
                 switch (section) {
                   case 'hero':
@@ -59,71 +128,14 @@ class _HomePageState extends State<HomePage> {
                   case 'skills':
                     scrollTo(_skillsKey);
                     break;
-                  case 'contact': // ✅ fixed string
+                  case 'contact':
                     scrollTo(_contactKey);
                     break;
                 }
               },
             ),
-
-            // Hero
-            HeroSection(key: _heroKey),
-            const SizedBox(height: 60),
-
-            // About Me
-            Container(
-              key: _aboutKey,
-              child: const AboutSection(),
-            ),
-
-            const SizedBox(height: 60),
-
-            // Projects
-            Padding(
-              key: _projectsKey,
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Text(
-                'Recent Projects',
-                style: GoogleFonts.bebasNeue(
-                  fontSize: 60,
-                  fontWeight: FontWeight.w100,
-                ),
-              ),
-            ),
-            const ProjectsSection(),
-
-            const SizedBox(height: 60),
-
-            // Skills
-            Padding(
-              key: _skillsKey,
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Text(
-                'Skills',
-                style: GoogleFonts.bebasNeue(
-                  fontSize: 60,
-                  fontWeight: FontWeight.w100,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            const SkillsSection(),
-
-            const SizedBox(height: 60),
-
-            const SizedBox(height: 200),
-
-            // Contact
-            Padding(
-              key: _contactKey,
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: const ContactSection(),
-            ),
-            const SizedBox(height: 60),
-
-            const FooterSection(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

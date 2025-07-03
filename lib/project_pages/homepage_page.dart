@@ -21,37 +21,54 @@ class HomepagePage extends StatelessWidget {
                 builder: (context, constraints) {
                   final isNarrow = constraints.maxWidth < 600;
 
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Logo + Name
                       Row(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
-                            child: Image.asset(
-                              'assets/images/projects/homepage.png',
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.cover,
-                            ),
+                          // Logo + Name
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(24),
+                                child: Image.asset(
+                                  'assets/images/projects/homepage.png',
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(width: 30),
+                              Text(
+                                'Homepage',
+                                style: GoogleFonts.bebasNeue(
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.w300,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 30),
-                          Text(
-                            'Homepage',
-                            style: GoogleFonts.bebasNeue(
-                              fontSize: 48,
-                              fontWeight: FontWeight.w300,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
+                          isNarrow
+                              ? Column(children: _actionButtons())
+                              : Row(children: _actionButtons()),
                         ],
                       ),
 
-                      isNarrow
-                          ? Column(children: _actionButtons())
-                          : Row(children: _actionButtons()),
+                      const SizedBox(height: 10),
+
+                      // Tech Tags
+                      Wrap(
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: [
+                          _techTag('Flutter Web'),
+                          _techTag('Supabase'),
+                          _techTag('PostgreSQL'),
+                        ],
+                      ),
                     ],
                   );
                 },
@@ -59,11 +76,11 @@ class HomepagePage extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              // Description
+              // Updated Description
               Text(
-                'A place to call home in the vast ocean of the internet. '
-                    'Homepage is a beautifully crafted personal site, built in Flutter Web, to showcase your work, '
-                    'share thoughts, and build your online identity with elegance.',
+                'Homepage is a minimal and elegant web-app that serves as a personal dashboard. '
+                    'It features a calming background, centered clock, pinned tabs, notes, and task tracking — '
+                    'all powered by Supabase and PostgreSQL, and hosted on Vercel.',
                 style: GoogleFonts.inter(
                   fontSize: 18,
                   height: 1.6,
@@ -72,7 +89,7 @@ class HomepagePage extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              // Single Mockup Image
+              // Mockup Image
               Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
@@ -100,7 +117,9 @@ class HomepagePage extends StatelessWidget {
           width: 40,
         ),
         onTap: () {
-          launchExternalLink('https://www.linkedin.com/posts/sayankabir_flutter-flutterweb-supabase-activity-7286050033659977728-7vaT?utm_source=share&utm_medium=member_desktop&rcm=ACoAADQMJ94BSmb43X5matzv4j14RtE0UuigDBQ');
+          launchExternalLink(
+            'https://www.linkedin.com/posts/sayankabir_flutter-flutterweb-supabase-activity-7286050033659977728-7vaT?utm_source=share&utm_medium=member_desktop&rcm=ACoAADQMJ94BSmb43X5matzv4j14RtE0UuigDBQ',
+          );
         },
       ),
       const SizedBox(width: 12),
@@ -115,5 +134,23 @@ class HomepagePage extends StatelessWidget {
         },
       ),
     ];
+  }
+
+  static Widget _techTag(String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: Colors.black12),
+      ),
+      child: Text(
+        label,
+        style: GoogleFonts.inter(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
   }
 }

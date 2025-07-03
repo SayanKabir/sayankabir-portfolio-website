@@ -14,12 +14,20 @@ class NavBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            'SayanKabir.',
-            style: TextStyle(
-              fontSize: 24,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.w600,
+          Blur(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: const Text(
+                'SayanKabir.',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ),
           Center(

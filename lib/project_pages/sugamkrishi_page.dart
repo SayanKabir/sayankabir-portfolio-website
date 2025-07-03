@@ -21,42 +21,60 @@ class SugamkrishiPage extends StatelessWidget {
                 builder: (context, constraints) {
                   bool isNarrow = constraints.maxWidth < 600;
 
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Logo + Name
                       Row(
-                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
-                            child: Image.asset(
-                              'assets/images/projects/sugamkrishi-logo.png',
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.cover,
-                            ),
+                          // Logo + Name
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(24),
+                                child: Image.asset(
+                                  'assets/images/projects/sugamkrishi-logo.png',
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(width: 30),
+                              Text(
+                                'SugamKrishi',
+                                style: GoogleFonts.bebasNeue(
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.w300,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 30),
-                          Text(
-                            'SugamKrishi',
-                            style: GoogleFonts.bebasNeue(
-                              fontSize: 48,
-                              fontWeight: FontWeight.w300,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
+
+                          // Action Buttons
+                          isNarrow
+                              ? Column(children: _actionButtons())
+                              : Row(children: _actionButtons()),
                         ],
                       ),
 
-                      // Action Buttons
-                      isNarrow
-                          ? Column(
-                        children: _actionButtons(),
-                      )
-                          : Row(
-                        children: _actionButtons(),
+                      const SizedBox(height: 10),
+
+                      // Tech Tags
+                      Wrap(
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: [
+                          _techTag('Flutter'),
+                          _techTag('Firebase'),
+                          _techTag('TensorFlow'),
+                          _techTag('OpenAI'),
+                          _techTag('Mandi API'),
+                          _techTag('Weather API'),
+                          _techTag('Schemes API'),
+                        ],
                       ),
                     ],
                   );
@@ -67,9 +85,9 @@ class SugamkrishiPage extends StatelessWidget {
 
               // Description
               Text(
-                'SugamKrishi is an agriculture-focused mobile app that empowers farmers and agri-enthusiasts '
-                    'with real-time market data, weather updates, smart recommendations, and access to organic '
-                    'farming practices—all in a simple, local-language interface.',
+                'SugamKrishi is a one-stop platform for farmers, featuring a community forum and integrated marketplace. '
+                    'The app leverages Firebase Firestore for real-time updates, offers CNN-powered crop disease recognition, '
+                    'and includes an LLM-based chatbot for agri-advisory and support.',
                 style: GoogleFonts.inter(
                   fontSize: 18,
                   height: 1.6,
@@ -102,7 +120,7 @@ class SugamkrishiPage extends StatelessWidget {
   List<Widget> _actionButtons() {
     return [
       MyButton(
-        child: Icon(Icons.language_rounded, size: 45,),
+        child: Icon(Icons.language_rounded, size: 45),
         onTap: () {
           launchExternalLink('https://sayankabir.github.io/sugamkrishi-landing-page/');
         },
@@ -129,6 +147,24 @@ class SugamkrishiPage extends StatelessWidget {
         width: 250,
         height: 500,
         fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  static Widget _techTag(String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: Colors.black12),
+      ),
+      child: Text(
+        label,
+        style: GoogleFonts.inter(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

@@ -20,38 +20,55 @@ class PasswordzzzPage extends StatelessWidget {
                 builder: (context, constraints) {
                   final isNarrow = constraints.maxWidth < 600;
 
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Logo + Name
+                      // Logo + Name Row
                       Row(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
-                            child: Image.asset(
-                              'assets/images/projects/passwordzzz-logo.png',
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.cover,
-                            ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(24),
+                                child: Image.asset(
+                                  'assets/images/projects/passwordzzz-logo.png',
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(width: 30),
+                              Text(
+                                'Passwordzzz',
+                                style: GoogleFonts.bebasNeue(
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.w300,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 30),
-                          Text(
-                            'Passwordzzz',
-                            style: GoogleFonts.bebasNeue(
-                              fontSize: 48,
-                              fontWeight: FontWeight.w300,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
+                          isNarrow
+                              ? Column(children: _actionButtons())
+                              : Row(children: _actionButtons()),
                         ],
                       ),
 
-                      // Action Buttons
-                      isNarrow
-                          ? Column(children: _actionButtons())
-                          : Row(children: _actionButtons()),
+                      const SizedBox(height: 10),
+
+                      // Tech Tags
+                      Wrap(
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: [
+                          _techTag('Flutter'),
+                          _techTag('SQLite'),
+                          _techTag('AES Encryption'),
+                          _techTag('Biometric Auth'),
+                        ],
+                      ),
                     ],
                   );
                 },
@@ -61,8 +78,9 @@ class PasswordzzzPage extends StatelessWidget {
 
               // Description
               Text(
-                'Passwordzzz is a secure password manager designed to simplify your digital life. '
-                    'Save, generate, and autofill passwords with military-grade encryption and a beautifully intuitive UI.',
+                'Passwordzzz is an open-source password manager built with AES encryption and biometric authentication. '
+                    'It securely stores credentials in an encrypted SQLite database and offers features like password generation, '
+                    'strength analysis, and offline access.',
                 style: GoogleFonts.inter(
                   fontSize: 18,
                   height: 1.6,
@@ -126,6 +144,24 @@ class PasswordzzzPage extends StatelessWidget {
         width: 250,
         height: 500,
         fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  static Widget _techTag(String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: Colors.black12),
+      ),
+      child: Text(
+        label,
+        style: GoogleFonts.inter(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

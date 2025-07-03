@@ -20,37 +20,55 @@ class PagePrismPage extends StatelessWidget {
                 builder: (context, constraints) {
                   final isNarrow = constraints.maxWidth < 600;
 
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Logo + Name
                       Row(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
-                            child: Image.asset(
-                              'assets/images/projects/pageprism.png',
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.cover,
-                            ),
+                          // Logo + Name
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(24),
+                                child: Image.asset(
+                                  'assets/images/projects/pageprism.png',
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(width: 30),
+                              Text(
+                                'PagePrism',
+                                style: GoogleFonts.bebasNeue(
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.w300,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 30),
-                          Text(
-                            'PagePrism',
-                            style: GoogleFonts.bebasNeue(
-                              fontSize: 48,
-                              fontWeight: FontWeight.w300,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
+                          isNarrow
+                              ? Column(children: _actionButtons())
+                              : Row(children: _actionButtons()),
                         ],
                       ),
 
-                      isNarrow
-                          ? Column(children: _actionButtons())
-                          : Row(children: _actionButtons()),
+                      const SizedBox(height: 10),
+
+                      // Tech Tags
+                      Wrap(
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: [
+                          _techTag('LangChain'),
+                          _techTag('OpenAI Embeddings'),
+                          _techTag('FAISS'),
+                          _techTag('Streamlit'),
+                        ],
+                      ),
                     ],
                   );
                 },
@@ -60,18 +78,17 @@ class PagePrismPage extends StatelessWidget {
 
               // Description
               Text(
-                'PagePrism is a Langchain-powered Streamlit web app that lets you chat directly with your PDF files. '
-                    'It uses embeddings, vector databases, and conversational memory to understand document structure, '
-                    'context, and semantics for interactive question answering.',
+                'PagePrism is a Streamlit web app powered by LangChain that enables conversational interaction with PDF files. '
+                    'It leverages OpenAI embeddings and FAISS vector indexing to understand content, preserve context, and support '
+                    'semantic document exploration through intelligent Q&A.',
                 style: GoogleFonts.inter(
                   fontSize: 18,
                   height: 1.6,
                 ),
               ),
 
-              const SizedBox(height: 30),
-
-              // Mockup Images - Horizontal Scroll
+              // You can re-enable mockups below if you add screenshots later
+              // const SizedBox(height: 30),
               // SingleChildScrollView(
               //   scrollDirection: Axis.horizontal,
               //   padding: const EdgeInsets.symmetric(vertical: 20),
@@ -95,7 +112,7 @@ class PagePrismPage extends StatelessWidget {
   List<Widget> _actionButtons() {
     return [
       MyButton(
-        child: Icon(Icons.language_rounded, size: 45),
+        child: const Icon(Icons.language_rounded, size: 45),
         onTap: () {
           launchExternalLink('https://pageprism.streamlit.app/');
         },
@@ -114,6 +131,25 @@ class PagePrismPage extends StatelessWidget {
     ];
   }
 
+  static Widget _techTag(String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: Colors.black12),
+      ),
+      child: Text(
+        label,
+        style: GoogleFonts.inter(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+
+  // Add mockups if needed later
   Widget _mockupImage(String name) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
