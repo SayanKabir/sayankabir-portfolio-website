@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+        const repo = "sayankabir-portfolio-website";
+        const path = window.location.pathname;
+        const target = path.includes(repo)
+          ? path.substring(path.indexOf(repo) + repo.length)
+          : path;
+
+        const newUrl = `/${repo}/#${target}${window.location.search}${window.location.hash}`;
+        window.location.replace(newUrl);
+    </script>
+</head>
+<body></body>
+</html>
